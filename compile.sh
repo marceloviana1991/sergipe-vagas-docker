@@ -1,8 +1,9 @@
 #!/bin/bash
 
-docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=sergipe-vagas -d mysql
+export DB_HOST="localhost"
+docker-compose up -d db
 sleep 5
 mvn install
-docker stop mysql
-docker rm mysql
+docker stop mysql-container
+docker rm mysql-container
 docker rmi mysql
