@@ -18,7 +18,13 @@ http://localhost:8080/usuarios
 Resquest
 {
     "cpf": "String",
-    "email": "String "
+    "email": "String ",
+    "cursos":[
+        {
+            "nome": "String",
+            "duracao": Integer
+        }
+    ]
 }
 ```
 ```
@@ -26,6 +32,13 @@ Response
 {
     "id": Integer,
     "cpf": "String",
-    "email": "String "
+    "email": "String ",
+    "cursos":[
+        {
+            "id": Integer,
+            "nome": "String",
+            "duracao": Integer
+        }
+    ]
 }
 ```
