@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql
+    container_name: mysql-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sergipe-vagas
+    restart: always
+    ports:
+      - "3306:3306"
+
+  api:
+    build: "./"
+    container_name: sergipe-vagas_api
+    environment:
+      - DB_HOST=db
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+
+
