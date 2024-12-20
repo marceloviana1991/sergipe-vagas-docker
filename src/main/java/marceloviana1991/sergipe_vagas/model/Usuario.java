@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Table(name = "usuarios")
-@Entity(name = "Usuarios")
+@Entity
 @EqualsAndHashCode(of = "id")
 public class Usuario {
     @Id
@@ -12,10 +12,6 @@ public class Usuario {
     private Long id;
     private String email;
     private String cpf;
-
-    public Usuario() {
-
-    }
 
     public Long getId() {
         return id;
