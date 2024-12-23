@@ -8,8 +8,8 @@ services:
     volumes:
       - ~/datadir:/var/lib/mysql
     restart: always
-    ports:
-      - "3306:3306"
+    networks:
+      - api-network
 
   api:
     build: "./"
@@ -19,8 +19,14 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    networks:
+      - api-network
     depends_on:
       - db
+
+networks:
+  api-network:
+    driver: bridge
 
 
 
