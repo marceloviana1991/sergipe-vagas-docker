@@ -3,7 +3,29 @@
 O projeto Sergipe-Vagas consiste no desenvolvimento de uma API Rest que se baseia nos conceitos de Integração Contínua utilizando ferramenta Docker.
 
 
-# Documentação da API
+## Início Rápido
+
+Para estartar a aplicação, no diretório raiz do projeto, execute o comando:
+
+```$ docker-compose up ```
+
+
+## Alterações no Projeto
+
+Para empacotar alterações na aplicação, execute o script:
+
+``` $ bash compile.sh ```
+
+
+## Excluir Containers e Imagens
+
+Para excluir containers e imagens, sem excluir os volumes do banco de dados, execute o script:
+
+``` $ bash clean.sh ```
+
+
+
+## Documentação da API
 
 ```
 http://localhost:8080/usuarios
