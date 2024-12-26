@@ -1,5 +1,6 @@
 package marceloviana1991.sergipe_vagas.contoller;
 
+import marceloviana1991.sergipe_vagas.dto.CursoRequestDto;
 import marceloviana1991.sergipe_vagas.dto.UsuarioRequestDto;
 import marceloviana1991.sergipe_vagas.dto.UsuarioResponseDto;
 import marceloviana1991.sergipe_vagas.service.UsuarioService;
@@ -25,5 +26,11 @@ public class UsuarioController {
     @GetMapping
     public List<UsuarioResponseDto> get() {
         return usuarioService.get();
+    }
+
+    @PostMapping("/{id}/adicionar-curso")
+    @Transactional
+    public UsuarioResponseDto postCurso(@PathVariable Long id, @RequestBody CursoRequestDto cursoRequestDto) {
+        return usuarioService.postCurso(id, cursoRequestDto);
     }
 }

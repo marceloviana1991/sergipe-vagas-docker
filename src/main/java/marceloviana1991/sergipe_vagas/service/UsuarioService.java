@@ -56,4 +56,18 @@ public class UsuarioService {
                 .toList();
     }
 
+    public UsuarioResponseDto postCurso(Long id, CursoRequestDto cursoRequestDto) {
+        Usuario usuario = usuarioRepository.getReferenceById(id);
+        Curso curso = new Curso();
+        curso.setNome(cursoRequestDto.nome());
+        curso.setDuracao(cursoRequestDto.duracao());
+        curso.setUsuario(usuario);
+        cursoRepository.save(curso);
+        List<Curso> cursos = cursoRepository.findByUsuario(usuario);
+        List<CursoResponseDto> cursoResponseDtos = cursos
+                .stream()
+                .map(c -> new CursoResponseDto(c.getId(), c.getNome(), c.getDuracao()))
+                .toList();
+        return new UsuarioResponseDto(usuario.getId(), usuario.getEmail(), usuario.getCpf(), cursoResponseDtos);
+    }
 }
