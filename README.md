@@ -31,11 +31,11 @@ Para excluir containers e imagens, sem excluir os volumes do banco de dados, exe
 http://localhost:8080/usuarios
 ```
 
-| Método | Nome do endpoint | Body Request     | Body Response | Path Variable     | Route                              |
-|--------|------------------|------------------|---------------|-------------------|------------------------------------|
-| POST | post             | application/json | application/json |                   |                                    |
-| GET | get              |                  |  application/json |                   |                                    |
-| POST | postCurso          | application/json |  application/json | ```{idUsuario}``` | ```/{idUsuario}/adicionar-curso``` |
+| Método | Body Request     | Body Response | Path Variable     | Route                       |
+|--------|------------------|---------------|-------------------|-----------------------------|
+| POST | application/json | application/json |                   |                             |
+| GET |                 |  application/json |                   |                             |
+| POST | application/json |  application/json | Integer         | ```/{id}/adicionar-curso``` |
 
 ```
 Resquest
