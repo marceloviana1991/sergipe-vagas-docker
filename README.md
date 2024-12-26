@@ -9,10 +9,11 @@ O projeto Sergipe-Vagas consiste no desenvolvimento de uma API Rest que se basei
 http://localhost:8080/usuarios
 ```
 
-| Método | Nome do endpoint |Body Request | Body Response | Path Variable
-|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------| -----------------------------------------------------------------------------------------------------------------|
-| POST | post |application/json | application/json | |
-| GET | get | |  application/json | |
+| Método | Nome do endpoint | Body Request     | Body Response | Path Variable     | Route                              |
+|--------|------------------|------------------|---------------|-------------------|------------------------------------|
+| POST | post             | application/json | application/json |                   |                                    |
+| GET | get              |                  |  application/json |                   |                                    |
+| POST | postCurso          | application/json |  application/json | ```{idUsuario}``` | ```/{idUsuario}/adicionar-curso``` |
 
 ```
 Resquest
