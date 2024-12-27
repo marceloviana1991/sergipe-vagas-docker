@@ -1,10 +1,10 @@
 package marceloviana1991.sergipe_vagas.contoller;
 
 import jakarta.validation.Valid;
-import marceloviana1991.sergipe_vagas.dto.CursoRequestDto;
-import marceloviana1991.sergipe_vagas.dto.UsuarioRequestDto;
-import marceloviana1991.sergipe_vagas.dto.UsuarioResponseDto;
-import marceloviana1991.sergipe_vagas.service.UsuarioService;
+import marceloviana1991.sergipe_vagas.domain.usuario.CursoRequestDto;
+import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioRequestDto;
+import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioResponseDto;
+import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +37,8 @@ public class UsuarioController {
 
     @PostMapping("/{id}/adicionar-curso")
     @Transactional
-    public ResponseEntity<UsuarioResponseDto> postCurso(@PathVariable Long id, @RequestBody @Valid CursoRequestDto cursoRequestDto) {
+    public ResponseEntity<UsuarioResponseDto> postCurso(@PathVariable Long id,
+                                                        @RequestBody @Valid CursoRequestDto cursoRequestDto) {
         return ResponseEntity.ok().body(usuarioService.postCurso(id, cursoRequestDto));
     }
 

@@ -1,4 +1,4 @@
-package marceloviana1991.sergipe_vagas.model;
+package marceloviana1991.sergipe_vagas.domain.usuario;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

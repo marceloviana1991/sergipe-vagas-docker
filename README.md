@@ -27,6 +27,7 @@ Para excluir containers e imagens, sem excluir os volumes do banco de dados, exe
 
 ## Documentação da API
 
+### Endpoints de Usuarios
 ```
 http://localhost:8080/usuarios
 ```
@@ -66,6 +67,10 @@ Response
     ]
 }
 ```
+### Endpoints de Cursos
+```
+http://localhost:8080/usuarios/{id}/adicionar-curso
+```
 
 | Método | Body Request     | Body Response | Path Variable     | Route                       |
 |--------|------------------|---------------|-------------------|-----------------------------|
@@ -89,6 +94,80 @@ Response
             "id": Integer,
             "nome": "String",
             "duracao": Integer
+        }
+    ]
+}
+```
+
+### Endpoints de Empresas
+
+```
+http://localhost:8080/empresas
+```
+
+
+| Método | Body Request     | Body Response | Path Variable | Route            |
+|--------|------------------|---------------|---------------|------------------|
+| POST | application/json | application/json |               |                  |
+| GET |                 |  application/json |               |                  |
+| GET |                 |  application/json | Integer       | ```/{id}```      |
+
+
+```
+Resquest
+{
+    "cnpj": "String",
+    "email": "String ",
+    "vagas":[
+        {
+            "nome": "String",
+            "atribuicao": Integer
+        }
+    ]
+}
+```
+```
+Response
+{
+    "id": Integer,
+    "cnpj": "String",
+    "email": "String ",
+    "vagas":[
+        {
+            "id": Integer,
+            "nome": "String",
+            "atribuicao": Integer
+        }
+    ]
+}
+```
+### Endpoints de Vagas
+```
+http://localhost:8080/empresas/{id}/adicionar-vaga
+```
+
+| Método | Body Request     | Body Response | Path Variable     | Route                      |
+|--------|------------------|---------------|-------------------|----------------------------|
+| POST | application/json |  application/json | Integer         | ```/{id}/adicionar-vaga``` |
+
+```
+Resquest
+{
+    "nome": "String",
+    "atribuicao": Integer
+}
+```
+```
+Response
+{
+    "id": Integer,
+    "cnpj": "String",
+    "email": "String ",
+    "vagas":[
+        {
+            "id": Integer,
+            "nome": "String",
+            "atribuicao": Integer
         }
     ]
 }

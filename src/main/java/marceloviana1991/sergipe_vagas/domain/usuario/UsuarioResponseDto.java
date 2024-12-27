@@ -1,4 +1,4 @@
-package marceloviana1991.sergipe_vagas.dto;
+package marceloviana1991.sergipe_vagas.domain.usuario;
 
 import java.util.List;
 

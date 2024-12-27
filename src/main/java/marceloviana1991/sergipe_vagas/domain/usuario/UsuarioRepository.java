@@ -1,6 +1,5 @@
-package marceloviana1991.sergipe_vagas.repository;
+package marceloviana1991.sergipe_vagas.domain.usuario;
 
-import marceloviana1991.sergipe_vagas.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
