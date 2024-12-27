@@ -8,17 +8,12 @@ import lombok.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String cpf;
-
-    public Usuario(String email, String cpf) {
-        this.email = email;
-        this.cpf = cpf;
-    }
 }
 

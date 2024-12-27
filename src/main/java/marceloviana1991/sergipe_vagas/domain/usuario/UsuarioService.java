@@ -1,5 +1,7 @@
 package marceloviana1991.sergipe_vagas.domain.usuario;
 
+import marceloviana1991.sergipe_vagas.domain.login.Login;
+import marceloviana1991.sergipe_vagas.domain.login.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,13 @@ public class UsuarioService {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Autowired
+    private LoginRepository loginRepository;
+
     public UsuarioResponseDto post(UsuarioRequestDto usuarioRequestDto) {
-        Usuario usuario = new Usuario(usuarioRequestDto.email(), usuarioRequestDto.cpf());
+        Login login = new Login(usuarioRequestDto.email(), usuarioRequestDto.cpf());
+        loginRepository.save(login);
+        Usuario usuario = new Usuario(login.getId(),usuarioRequestDto.email(), usuarioRequestDto.cpf());
         usuarioRepository.save(usuario);
         List<Curso> cursos = usuarioRequestDto.cursos()
                 .stream()
