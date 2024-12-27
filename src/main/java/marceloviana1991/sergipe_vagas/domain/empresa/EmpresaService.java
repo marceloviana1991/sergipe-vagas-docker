@@ -63,8 +63,13 @@ public class EmpresaService {
         return new EmpresaResponseDto(empresa.getId(), empresa.getEmail(), empresa.getCnpj(), vagasResponseDto);
     }
 
+    public void deleteVaga(Long idVaga) {
+        Vaga vaga = vagaRepository.getReferenceById(idVaga);
+        vaga.setAtiva(false);
+    }
+
     private List<VagaResponseDto> getVagasByEmpresa(Empresa empresa) {
-        List<Vaga> vagas = vagaRepository.findAllByEmpresa(empresa);
+        List<Vaga> vagas = vagaRepository.capturaVagasAtivasDaEmpresa(empresa);
         return vagas
                 .stream()
                 .map(v -> new VagaResponseDto(v.getId(), v.getNome(), v.getAtribuicao()))

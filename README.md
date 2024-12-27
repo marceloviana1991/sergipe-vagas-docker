@@ -69,7 +69,7 @@ Response
 ```
 ### Endpoints de Cursos
 ```
-http://localhost:8080/usuarios/{id}/adicionar-curso
+http://localhost:8080/usuarios
 ```
 
 | Método | Body Request     | Body Response | Path Variable     | Route                       |
@@ -143,12 +143,13 @@ Response
 ```
 ### Endpoints de Vagas
 ```
-http://localhost:8080/empresas/{id}/adicionar-vaga
+http://localhost:8080/empresas
 ```
 
-| Método | Body Request     | Body Response | Path Variable     | Route                      |
-|--------|------------------|---------------|-------------------|----------------------------|
-| POST | application/json |  application/json | Integer         | ```/{id}/adicionar-vaga``` |
+| Método | Body Request     | Body Response    | Path Variable     | Route                      |
+|--------|------------------|------------------|-------------------|----------------------------|
+| POST   | application/json | application/json | Integer         | ```/{id}/adicionar-vaga``` |
+| DELETE |                  |                  | Integer         | ```/vagas/{idVaga}```      |
 
 ```
 Resquest

@@ -42,7 +42,15 @@ public class EmpresaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmpresaResponseDto> getUsuario(@PathVariable Long id) {
+    public ResponseEntity<EmpresaResponseDto> getEmpresa(@PathVariable Long id) {
         return ResponseEntity.ok().body(empresaService.getEmpresa(id));
     }
+
+    @DeleteMapping("/vagas/{idVaga}")
+    @Transactional
+    public ResponseEntity<?> deleteVaga(@PathVariable Long idVaga) {
+        empresaService.deleteVaga(idVaga);
+        return ResponseEntity.noContent().build();
+    }
+
 }

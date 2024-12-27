@@ -18,6 +18,7 @@ public class Vaga {
     private Long id;
     private String nome;
     private String atribuicao;
+    private boolean ativa;
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
@@ -26,5 +27,6 @@ public class Vaga {
         this.nome = nome;
         this.atribuicao = atribuicao;
         this.empresa = empresa;
+        this.ativa = true;
     }
 }
