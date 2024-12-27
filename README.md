@@ -31,11 +31,12 @@ Para excluir containers e imagens, sem excluir os volumes do banco de dados, exe
 http://localhost:8080/usuarios
 ```
 
-| Método | Body Request     | Body Response | Path Variable     | Route                       |
-|--------|------------------|---------------|-------------------|-----------------------------|
-| POST | application/json | application/json |                   |                             |
-| GET |                 |  application/json |                   |                             |
-| POST | application/json |  application/json | Integer         | ```/{id}/adicionar-curso``` |
+| Método | Body Request     | Body Response | Path Variable | Route            |
+|--------|------------------|---------------|---------------|------------------|
+| POST | application/json | application/json |               |                  |
+| GET |                 |  application/json |               |                  |
+| GET |                 |  application/json | Integer       | ```/{id}```      |
+
 
 ```
 Resquest
@@ -48,6 +49,33 @@ Resquest
             "duracao": Integer
         }
     ]
+}
+```
+```
+Response
+{
+    "id": Integer,
+    "cpf": "String",
+    "email": "String ",
+    "cursos":[
+        {
+            "id": Integer,
+            "nome": "String",
+            "duracao": Integer
+        }
+    ]
+}
+```
+
+| Método | Body Request     | Body Response | Path Variable     | Route                       |
+|--------|------------------|---------------|-------------------|-----------------------------|
+| POST | application/json |  application/json | Integer         | ```/{id}/adicionar-curso``` |
+
+```
+Resquest
+{
+    "nome": "String",
+    "duracao": Integer
 }
 ```
 ```

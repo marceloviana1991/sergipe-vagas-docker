@@ -7,6 +7,7 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Usuario {
     @Id
@@ -15,6 +16,9 @@ public class Usuario {
     private String email;
     private String cpf;
 
-
+    public Usuario(String email, String cpf) {
+        this.email = email;
+        this.cpf = cpf;
+    }
 }
 

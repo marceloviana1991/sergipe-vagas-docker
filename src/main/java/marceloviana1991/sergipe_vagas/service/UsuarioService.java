@@ -24,16 +24,11 @@ public class UsuarioService {
     private CursoRepository cursoRepository;
 
     public UsuarioResponseDto post(UsuarioRequestDto usuarioRequestDto) {
-        Usuario usuario = new Usuario();
-        usuario.setEmail(usuarioRequestDto.email());
-        usuario.setCpf(usuarioRequestDto.cpf());
+        Usuario usuario = new Usuario(usuarioRequestDto.email(), usuarioRequestDto.cpf());
         usuarioRepository.save(usuario);
         List<Curso> cursos = new ArrayList<>();
         for(CursoRequestDto cursoRequestDto : usuarioRequestDto.cursos()) {
-            Curso curso = new Curso();
-            curso.setNome(cursoRequestDto.nome());
-            curso.setDuracao(cursoRequestDto.duracao());
-            curso.setUsuario(usuario);
+            Curso curso = new Curso(cursoRequestDto.nome(), cursoRequestDto.duracao(), usuario);
             cursoRepository.save(curso);
             cursos.add(curso);
         }
@@ -58,12 +53,19 @@ public class UsuarioService {
 
     public UsuarioResponseDto postCurso(Long id, CursoRequestDto cursoRequestDto) {
         Usuario usuario = usuarioRepository.getReferenceById(id);
-        Curso curso = new Curso();
-        curso.setNome(cursoRequestDto.nome());
-        curso.setDuracao(cursoRequestDto.duracao());
-        curso.setUsuario(usuario);
+        Curso curso = new Curso(cursoRequestDto.nome(), cursoRequestDto.duracao(), usuario);
         cursoRepository.save(curso);
         List<Curso> cursos = cursoRepository.findByUsuario(usuario);
+        List<CursoResponseDto> cursoResponseDtos = cursos
+                .stream()
+                .map(c -> new CursoResponseDto(c.getId(), c.getNome(), c.getDuracao()))
+                .toList();
+        return new UsuarioResponseDto(usuario.getId(), usuario.getEmail(), usuario.getCpf(), cursoResponseDtos);
+    }
+
+    public UsuarioResponseDto getUsuario(Long id) {
+        Usuario usuario = usuarioRepository.getReferenceById(id);
+        List<Curso> cursos = cursoRepository.findAllByUsuario(usuario);
         List<CursoResponseDto> cursoResponseDtos = cursos
                 .stream()
                 .map(c -> new CursoResponseDto(c.getId(), c.getNome(), c.getDuracao()))
