@@ -5,7 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "logins")
 @Entity
@@ -13,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Login {
+public class Login implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +28,20 @@ public class Login {
     public Login(String email, String senha) {
         this.email = email;
         this.senha = new BCryptPasswordEncoder().encode(senha);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 }
