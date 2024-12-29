@@ -2,11 +2,13 @@ package marceloviana1991.sergipe_vagas.domain.usuario;
 
 import marceloviana1991.sergipe_vagas.domain.login.Login;
 import marceloviana1991.sergipe_vagas.domain.login.LoginRepository;
+import marceloviana1991.sergipe_vagas.domain.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -21,6 +23,10 @@ public class UsuarioService {
     private LoginRepository loginRepository;
 
     public UsuarioResponseDto post(UsuarioRequestDto usuarioRequestDto) {
+        Optional<Login> optionalLogin = loginRepository.findByEmailIgnoreCase(usuarioRequestDto.email());
+        if (optionalLogin.isPresent()) {
+            throw new RuntimeException("Já existe uma conta cadastrada com esse email!");
+        }
         Login login = new Login(usuarioRequestDto.email(), usuarioRequestDto.senha());
         loginRepository.save(login);
         Usuario usuario = new Usuario(login.getId(),usuarioRequestDto.email(), usuarioRequestDto.cpf());

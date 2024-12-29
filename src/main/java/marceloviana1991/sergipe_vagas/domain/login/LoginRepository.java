@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface LoginRepository extends JpaRepository<Login, Long> {
     Optional<Login> findByEmailIgnoreCase(String email);
+
+    Optional<Login>  findByToken(String tokenVerificacao);
 }

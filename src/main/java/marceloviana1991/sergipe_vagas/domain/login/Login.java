@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Table(name = "logins")
 @Entity
@@ -24,10 +25,14 @@ public class Login implements UserDetails {
     private Long id;
     private String email;
     private String senha;
+    private boolean verificado;
+    private String token;
 
     public Login(String email, String senha) {
         this.email = email;
         this.senha = new BCryptPasswordEncoder().encode(senha);
+        this.verificado = false;
+        this.token = UUID.randomUUID().toString();
     }
 
     @Override
@@ -43,5 +48,10 @@ public class Login implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return verificado;
     }
 }

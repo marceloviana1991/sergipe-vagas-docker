@@ -18,4 +18,10 @@ public class LoginService implements UserDetailsService {
                 () -> new UsernameNotFoundException("O usuário não foi encontrado!")
         );
     }
+
+    public void ativarConta(String tokenVerificacao) {
+        Login login = loginRepository.findByToken(tokenVerificacao).orElseThrow(
+                () -> new UsernameNotFoundException("O usuário não foi encontrado!"));
+        login.setVerificado(true);
+    }
 }

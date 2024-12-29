@@ -27,6 +27,26 @@ Para excluir containers e imagens, sem excluir os volumes do banco de dados, exe
 
 ## Documentação da API
 
+### Permissões de acesso
+
+Sistema de autenticação statelles com token jwt
+
+*Não Autenticado:*
+- Efetuar Login
+- Cadastrar Usuário
+- Cadastrar Empresa
+
+*Usuário Autenticado:*
+- Listar empresas e vagas cadastradas
+- Visualizar dados pessoais do usuário
+- Adicionar curso ao próprio cadastro
+
+*Usuário Empresa:*
+- Listar usuarios e cursos
+- Visualizar dados pessoais da empresa
+- Adicionar e desativar vaga na empresa
+
+
 ### Endpoints de Usuarios
 ```
 http://localhost:8080/usuarios

@@ -28,6 +28,7 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(
                         req -> {
                             req.requestMatchers(HttpMethod.POST, "/usuarios", "/empresas", "/login").permitAll();
+                            req.requestMatchers(HttpMethod.GET, "/ativar/{tokenVerificacao}").permitAll();
                             req.anyRequest().authenticated();
                         }
                 )

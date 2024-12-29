@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpresaService {
@@ -21,6 +22,10 @@ public class EmpresaService {
     private LoginRepository loginRepository;
 
     public EmpresaResponseDto post(EmpresaRequestDto empresaRequestDto) {
+        Optional<Login> optionalLogin = loginRepository.findByEmailIgnoreCase(empresaRequestDto.email());
+        if (optionalLogin.isPresent()) {
+            throw new RuntimeException("Já existe uma conta cadastrada com esse email!");
+        }
         Login login = new Login(empresaRequestDto.email(), empresaRequestDto.senha());
         loginRepository.save(login);
         Empresa empresa = new Empresa(login.getId(), empresaRequestDto.email(), empresaRequestDto.cnpj());
