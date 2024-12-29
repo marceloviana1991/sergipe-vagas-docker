@@ -1,0 +1,1 @@
+ALTER TABLE logins ADD COLUMN perfil ENUM('USUARIO', 'EMPRESA');

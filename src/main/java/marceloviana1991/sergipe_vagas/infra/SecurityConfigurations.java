@@ -29,6 +29,11 @@ public class SecurityConfigurations {
                         req -> {
                             req.requestMatchers(HttpMethod.POST, "/usuarios", "/empresas", "/login").permitAll();
                             req.requestMatchers(HttpMethod.GET, "/ativar/{tokenVerificacao}").permitAll();
+                            req.requestMatchers(HttpMethod.GET, "/empresas/**").hasRole("USUARIO");
+                            req.requestMatchers(HttpMethod.GET, "/usuarios/**").hasRole("EMPRESA");
+                            req.requestMatchers(HttpMethod.POST, "/empresas/{id}/adicionar-vaga").hasRole("EMPRESA");
+                            req.requestMatchers(HttpMethod.DELETE, "/empresas/vagas/{idVaga}").hasRole("EMPRESA");
+                            req.requestMatchers(HttpMethod.POST, "/usuarios/{id}/adicionar-curso").hasRole("USUARIO");
                             req.anyRequest().authenticated();
                         }
                 )

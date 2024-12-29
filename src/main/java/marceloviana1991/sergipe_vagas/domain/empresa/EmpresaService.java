@@ -2,9 +2,11 @@ package marceloviana1991.sergipe_vagas.domain.empresa;
 
 import marceloviana1991.sergipe_vagas.domain.login.Login;
 import marceloviana1991.sergipe_vagas.domain.login.LoginRepository;
+import marceloviana1991.sergipe_vagas.domain.login.Perfil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +28,8 @@ public class EmpresaService {
         if (optionalLogin.isPresent()) {
             throw new RuntimeException("Já existe uma conta cadastrada com esse email!");
         }
-        Login login = new Login(empresaRequestDto.email(), empresaRequestDto.senha());
+        Login login = new Login(empresaRequestDto.email(), empresaRequestDto.senha(), Perfil.EMPRESA);
+        System.out.println(LocalDateTime.now() + " " + login.getToken() + " " + login.getEmail());
         loginRepository.save(login);
         Empresa empresa = new Empresa(login.getId(), empresaRequestDto.email(), empresaRequestDto.cnpj());
         empresaRepository.save(empresa);
@@ -68,8 +71,11 @@ public class EmpresaService {
         return new EmpresaResponseDto(empresa.getId(), empresa.getEmail(), empresa.getCnpj(), vagasResponseDto);
     }
 
-    public void deleteVaga(Long idVaga) {
+    public void deleteVaga(Long idVaga, Login login) {
         Vaga vaga = vagaRepository.getReferenceById(idVaga);
+        if (!login.getId().equals(vaga.getEmpresa().getId())) {
+            throw new RuntimeException("Erro de permissão de login!");
+        }
         vaga.setAtiva(false);
     }
 

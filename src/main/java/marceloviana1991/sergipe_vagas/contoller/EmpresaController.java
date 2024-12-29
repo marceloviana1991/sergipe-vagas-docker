@@ -54,8 +54,8 @@ public class EmpresaController {
 
     @DeleteMapping("/vagas/{idVaga}")
     @Transactional
-    public ResponseEntity<?> deleteVaga(@PathVariable Long idVaga) {
-        empresaService.deleteVaga(idVaga);
+    public ResponseEntity<?> deleteVaga(@PathVariable Long idVaga, @AuthenticationPrincipal Login login) {
+        empresaService.deleteVaga(idVaga, login);
         return ResponseEntity.noContent().build();
     }
 
