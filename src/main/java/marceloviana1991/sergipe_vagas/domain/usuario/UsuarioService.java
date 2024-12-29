@@ -21,7 +21,7 @@ public class UsuarioService {
     private LoginRepository loginRepository;
 
     public UsuarioResponseDto post(UsuarioRequestDto usuarioRequestDto) {
-        Login login = new Login(usuarioRequestDto.email(), usuarioRequestDto.cpf());
+        Login login = new Login(usuarioRequestDto.email(), usuarioRequestDto.senha());
         loginRepository.save(login);
         Usuario usuario = new Usuario(login.getId(),usuarioRequestDto.email(), usuarioRequestDto.cpf());
         usuarioRepository.save(usuario);

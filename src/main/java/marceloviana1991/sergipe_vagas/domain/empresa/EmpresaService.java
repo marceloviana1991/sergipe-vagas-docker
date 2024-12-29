@@ -21,7 +21,7 @@ public class EmpresaService {
     private LoginRepository loginRepository;
 
     public EmpresaResponseDto post(EmpresaRequestDto empresaRequestDto) {
-        Login login = new Login(empresaRequestDto.email(), empresaRequestDto.cnpj());
+        Login login = new Login(empresaRequestDto.email(), empresaRequestDto.senha());
         loginRepository.save(login);
         Empresa empresa = new Empresa(login.getId(), empresaRequestDto.email(), empresaRequestDto.cnpj());
         empresaRepository.save(empresa);

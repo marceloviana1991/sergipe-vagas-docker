@@ -44,6 +44,7 @@ Resquest
 {
     "cpf": "String",
     "email": "String ",
+    "senha": "String ",
     "cursos":[
         {
             "nome": "String",
@@ -118,6 +119,7 @@ Resquest
 {
     "cnpj": "String",
     "email": "String ",
+    "senha": "String ",
     "vagas":[
         {
             "nome": "String",
