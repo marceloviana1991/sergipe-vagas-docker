@@ -1,12 +1,14 @@
 package marceloviana1991.sergipe_vagas.contoller;
 
 import jakarta.validation.Valid;
+import marceloviana1991.sergipe_vagas.domain.login.Login;
 import marceloviana1991.sergipe_vagas.domain.usuario.CursoRequestDto;
 import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioRequestDto;
 import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioResponseDto;
 import marceloviana1991.sergipe_vagas.domain.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -38,7 +40,11 @@ public class UsuarioController {
     @PostMapping("/{id}/adicionar-curso")
     @Transactional
     public ResponseEntity<UsuarioResponseDto> postCurso(@PathVariable Long id,
-                                                        @RequestBody @Valid CursoRequestDto cursoRequestDto) {
+                                                        @RequestBody @Valid CursoRequestDto cursoRequestDto,
+                                                        @AuthenticationPrincipal Login login) {
+        if (!login.getId().equals(id)) {
+            throw new RuntimeException("Erro de permissão de login!");
+        }
         return ResponseEntity.ok().body(usuarioService.postCurso(id, cursoRequestDto));
     }
 

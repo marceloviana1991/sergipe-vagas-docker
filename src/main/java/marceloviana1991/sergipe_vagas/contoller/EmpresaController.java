@@ -5,8 +5,10 @@ import marceloviana1991.sergipe_vagas.domain.empresa.EmpresaRequestDto;
 import marceloviana1991.sergipe_vagas.domain.empresa.EmpresaResponseDto;
 import marceloviana1991.sergipe_vagas.domain.empresa.EmpresaService;
 import marceloviana1991.sergipe_vagas.domain.empresa.VagaRequestDto;
+import marceloviana1991.sergipe_vagas.domain.login.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,7 +39,11 @@ public class EmpresaController {
     @PostMapping("/{id}/adicionar-vaga")
     @Transactional
     public ResponseEntity<EmpresaResponseDto> postVaga(@PathVariable Long id,
-                                                        @RequestBody @Valid VagaRequestDto vagaRequestDto) {
+                                                       @RequestBody @Valid VagaRequestDto vagaRequestDto,
+                                                       @AuthenticationPrincipal Login login) {
+        if (!login.getId().equals(id)) {
+            throw new RuntimeException("Erro de permissão de login!");
+        }
         return ResponseEntity.ok().body(empresaService.postVaga(id, vagaRequestDto));
     }
 
