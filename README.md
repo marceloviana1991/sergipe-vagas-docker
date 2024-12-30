@@ -226,9 +226,8 @@ Response
 ```
 http://localhost:8080//ativar
 ```
-```
+
 | Método | Body Request     | Body Response    | Path Variable | Route           |
 |--------|------------------|------------------|---------------|-----------------|
 | GET    |                  |                  | UUID          | ```/{código}``` |
 
-```
