@@ -224,7 +224,7 @@ Response
 
 ### Endpoints de Ativação de cadastro
 ```
-http://localhost:8080//ativar
+http://localhost:8080/ativar
 ```
 
 | Método | Body Request     | Body Response    | Path Variable | Route           |
