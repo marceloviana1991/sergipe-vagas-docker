@@ -31,10 +31,14 @@ Para excluir containers e imagens, sem excluir os volumes do banco de dados, exe
 
 Sistema de autenticação statelles com token jwt
 
+
 *Não Autenticado:*
 - Efetuar Login
-- Cadastrar Usuário
-- Cadastrar Empresa
+- Ativação de Cadastro
+- Cadastrar Usuário (Desativado)
+- Cadastrar Empresa (Desativado)
+
+Para simplificar a lógica do sistema, ao invés de enviar o código de ativação de cadastro via email, a aplicação imprime o código de ativação no console.
 
 *Login Autenticado como Usuário:*
 - Listar empresas e vagas cadastradas
