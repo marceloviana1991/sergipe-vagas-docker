@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+
 import java.util.UUID;
 
 @Table(name = "logins")

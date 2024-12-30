@@ -33,6 +33,7 @@ Sistema de autenticação statelles com token jwt
 
 
 *Não Autenticado:*
+- Listar empresas e vagas cadastradas
 - Efetuar Login
 - Ativação de Cadastro
 - Cadastrar Usuário (Desativado)
@@ -41,14 +42,13 @@ Sistema de autenticação statelles com token jwt
 Para simplificar a lógica do sistema, ao invés de enviar o código de ativação de cadastro via email, a aplicação imprime o código de ativação no console.
 
 *Login Autenticado como Usuário:*
-- Listar empresas e vagas cadastradas
 - Visualizar dados pessoais do usuário
 - Adicionar curso ao próprio cadastro
 
 *Login Autenticado como Empresa:*
 - Listar usuarios e cursos
 - Visualizar dados pessoais da empresa
-- Adicionar e desativar vaga na empresa
+- Adicionar e desativar vaga ao próprio cadastro
 
 
 ### Endpoints de Usuarios
