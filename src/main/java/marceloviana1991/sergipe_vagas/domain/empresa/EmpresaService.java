@@ -57,7 +57,10 @@ public class EmpresaService {
         return empresasResponseDto;
     }
 
-    public EmpresaResponseDto postVaga(Long id, VagaRequestDto vagaRequestDto) {
+    public EmpresaResponseDto postVaga(Long id, VagaRequestDto vagaRequestDto, Login login) {
+        if (!login.getId().equals(id)) {
+            throw new RuntimeException("Erro de permissão de login!");
+        }
         Empresa empresa = empresaRepository.getReferenceById(id);
         Vaga vaga = new Vaga(vagaRequestDto.nome(), vagaRequestDto.atribuicao(), empresa);
         vagaRepository.save(vaga);

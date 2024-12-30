@@ -41,10 +41,7 @@ public class EmpresaController {
     public ResponseEntity<EmpresaResponseDto> postVaga(@PathVariable Long id,
                                                        @RequestBody @Valid VagaRequestDto vagaRequestDto,
                                                        @AuthenticationPrincipal Login login) {
-        if (!login.getId().equals(id)) {
-            throw new RuntimeException("Erro de permissão de login!");
-        }
-        return ResponseEntity.ok().body(empresaService.postVaga(id, vagaRequestDto));
+        return ResponseEntity.ok().body(empresaService.postVaga(id, vagaRequestDto, login));
     }
 
     @GetMapping("/{id}")

@@ -2,7 +2,6 @@ package marceloviana1991.sergipe_vagas.domain.usuario;
 
 import marceloviana1991.sergipe_vagas.domain.login.Login;
 import marceloviana1991.sergipe_vagas.domain.login.LoginRepository;
-import marceloviana1991.sergipe_vagas.domain.login.LoginService;
 import marceloviana1991.sergipe_vagas.domain.login.Perfil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,10 @@ public class UsuarioService {
         return usuariosResponseDto;
     }
 
-    public UsuarioResponseDto postCurso(Long id, CursoRequestDto cursoRequestDto) {
+    public UsuarioResponseDto postCurso(Long id, CursoRequestDto cursoRequestDto, Login login) {
+        if (!login.getId().equals(id)) {
+            throw new RuntimeException("Erro de permissão de login!");
+        }
         Usuario usuario = usuarioRepository.getReferenceById(id);
         Curso curso = new Curso(cursoRequestDto.nome(), cursoRequestDto.duracao(), usuario);
         cursoRepository.save(curso);

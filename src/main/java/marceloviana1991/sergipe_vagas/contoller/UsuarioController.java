@@ -42,10 +42,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioResponseDto> postCurso(@PathVariable Long id,
                                                         @RequestBody @Valid CursoRequestDto cursoRequestDto,
                                                         @AuthenticationPrincipal Login login) {
-        if (!login.getId().equals(id)) {
-            throw new RuntimeException("Erro de permissão de login!");
-        }
-        return ResponseEntity.ok().body(usuarioService.postCurso(id, cursoRequestDto));
+        return ResponseEntity.ok().body(usuarioService.postCurso(id, cursoRequestDto, login));
     }
 
     @GetMapping("/{id}")
