@@ -36,12 +36,12 @@ Sistema de autenticação statelles com token jwt
 - Cadastrar Usuário
 - Cadastrar Empresa
 
-*Usuário Autenticado:*
+*Login Autenticado como Usuário:*
 - Listar empresas e vagas cadastradas
 - Visualizar dados pessoais do usuário
 - Adicionar curso ao próprio cadastro
 
-*Usuário Empresa:*
+*Login Autenticado como Empresa:*
 - Listar usuarios e cursos
 - Visualizar dados pessoais da empresa
 - Adicionar e desativar vaga na empresa
