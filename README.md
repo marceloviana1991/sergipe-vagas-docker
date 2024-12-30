@@ -134,8 +134,8 @@ http://localhost:8080/empresas
 | Método | Body Request     | Body Response | Path Variable | Route            |
 |--------|------------------|---------------|---------------|------------------|
 | POST | application/json | application/json |               |                  |
-| GET |                 |  application/json |               |                  |
-| GET |                 |  application/json | Integer       | ```/{id}```      |
+| GET |                 |  application/json |                |                  |
+| GET |                 |  application/json | Integer        | ```/{id}```      |
 
 
 ```
@@ -174,8 +174,8 @@ http://localhost:8080/empresas
 
 | Método | Body Request     | Body Response    | Path Variable     | Route                      |
 |--------|------------------|------------------|-------------------|----------------------------|
-| POST   | application/json | application/json | Integer         | ```/{id}/adicionar-vaga``` |
-| DELETE |                  |                  | Integer         | ```/vagas/{idVaga}```      |
+| POST   | application/json | application/json | Integer           | ```/{id}/adicionar-vaga``` |
+| DELETE |                  |                  | Integer           | ```/vagas/{idVaga}```      |
 
 ```
 Resquest
@@ -220,4 +220,15 @@ Response
 {
     "token": "String"
 }
+```
+
+### Endpoints de Ativação de cadastro
+```
+http://localhost:8080//ativar
+```
+```
+| Método | Body Request     | Body Response    | Path Variable | Route    |
+|--------|------------------|------------------|---------------|----------|
+| GET    |                  |                  | UUID          | {código} |
+
 ```
