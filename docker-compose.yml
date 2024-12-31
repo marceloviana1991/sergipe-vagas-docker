@@ -8,6 +8,11 @@ services:
     volumes:
       - ~/datadir:/var/lib/mysql
     restart: always
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=root
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - api-network
 
@@ -22,7 +27,8 @@ services:
     networks:
       - api-network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 networks:
   api-network:
