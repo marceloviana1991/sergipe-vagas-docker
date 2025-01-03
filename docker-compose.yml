@@ -21,6 +21,7 @@ services:
     container_name: sergipe-vagas_api
     environment:
       - DB_HOST=db
+      - DB_PORT=3306
     restart: always
     ports:
       - "8080:8080"
